@@ -47,7 +47,7 @@ edcoder package contains encoder and decoder implemented by serval format,such a
   }
   defer fi.Close()
   
-  e, err := NewEncoder(edcoder.SetEncoderExt("json"), edcoder.SetEncoderObj(&User{"june","abc"}, edcoder.SetEncoderWriter(fi)))
+  e, err := edcoder.NewEncoder(edcoder.SetEncoderExt("json"), edcoder.SetEncoderObj(&User{"june","abc"}, edcoder.SetEncoderWriter(fi)))
   if nil != err {
     ...
   }
