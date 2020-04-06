@@ -3,13 +3,15 @@ edcoder package include encoder and decoder implemented by serval format,such as
 
 #decocder
 ```
+  import "github.com/naruto-june/edcoder"
+  
   type User struct {
     Name string
     EName string `json:"company"`
   }
   
   // data
-  d, err := NewDecoder(SetDecoderExt('json'), SetDecoderData(`{"name":"june","company":"abc"}`))
+  d, err := edcoder.NewDecoder(edcoder.SetDecoderExt('json'), edcoder.SetDecoderData(`{"name":"june","company":"abc"}`))
   if nil != err {
     ...
   }
@@ -22,7 +24,7 @@ edcoder package include encoder and decoder implemented by serval format,such as
 	}
 	defer fi.Close()
   
-  d, err := NewDecoder(SetDecoderExt('json'), SetDecoderReader(fi))
+  d, err := edcoder.NewDecoder(edcoder.SetDecoderExt('json'), edcoder.SetDecoderReader(fi))
   if nil != err {
     ...
   }
@@ -32,6 +34,8 @@ edcoder package include encoder and decoder implemented by serval format,such as
 
 #encode
 ```
+  import "github.com/naruto-june/edcoder"
+  
   type User struct {
     Name string
     EName string `json:"company"`
@@ -43,7 +47,7 @@ edcoder package include encoder and decoder implemented by serval format,such as
   }
   defer fi.Close()
   
-  e, err := NewEncoder(SetEncoderExt("json"), SetEncoderObj(&User{"june","abc"},SetEncoderWriter(fi)))
+  e, err := NewEncoder(edcoder.SetEncoderExt("json"), edcoder.SetEncoderObj(&User{"june","abc"}, edcoder.SetEncoderWriter(fi)))
   if nil != err {
     ...
   }
