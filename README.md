@@ -2,7 +2,7 @@
 edcoder package include encoder and decoder implemented by serval format,such as toml,ymal,ini,xml and json.
 
 #decocder
-`
+```
   type User struct {
     Name string
     EName string `json:"company"`
@@ -28,9 +28,10 @@ edcoder package include encoder and decoder implemented by serval format,such as
   }
   err = d.Decode(&User{})
   ...
-`
+```
+
 #encode
-`
+```
   type User struct {
     Name string
     EName string `json:"company"`
@@ -48,4 +49,4 @@ edcoder package include encoder and decoder implemented by serval format,such as
   }
   err = d.Encode()
   ...
-`
+```
