@@ -20,7 +20,7 @@ type Decoder struct {
 }
 
 // Reader 读取器
-type Reader func(fileName string) (string, error)
+//type Reader func(fileName string) (string, error)
 
 // DecoderOption 配置参数接口
 type DecoderOption interface {
@@ -72,7 +72,15 @@ func NewDecoder(opts ...DecoderOption) (*Decoder, error) {
 
 	if "" != d.data {
 		return d, nil
-	} else if nil == d.reader {
+	} else if nil != d.reader {
+		data, err := readConf(d.reader)
+		if nil != err {
+			return nil, err
+		}
+		d.data = data
+
+		return d, nil
+	} else {
 		_, err := os.Stat("default." + d.ext)
 		if nil != err {
 			return nil, err
@@ -87,8 +95,6 @@ func NewDecoder(opts ...DecoderOption) (*Decoder, error) {
 
 		return d, nil
 	}
-
-	return nil, errors.New("data or reader must be set one")
 }
 
 // ConfDecoder 配置解析器
