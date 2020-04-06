@@ -1,5 +1,5 @@
 # edcoder
-edcoder package include encoder and decoder implemented by serval format,such as toml,ymal,ini,xml and json.
+edcoder package contains encoder and decoder implemented by serval format,such as toml,ymal,ini,xml and json.
 
 #decocder
 ```
