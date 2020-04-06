@@ -197,7 +197,7 @@ func TestED2Struct(t *testing.T) {
 		Name      string   `xml:"name,attr"` //person标签属性名为name的属性值
 		Age       int      `xml:"age,attr"`
 		Career    string   `xml:"career"`             //person中标签名为career的值 若不定义标签则该字段为空，不填充
-		Interests []string `xml:"interests>interest"` //节点interests下的interest数组 [不写>当子标签为一个的时候会把它当做对象解析]
+		Interests []string `xml:"interests>interest"` //节点interests下的interest数组
 	}
 	type Result struct {
 		XMLName xml.Name `xml:"persons"` //节点persons
@@ -210,7 +210,7 @@ func TestED2Struct(t *testing.T) {
 		B      string
 	}
 
-	type Ini struct { //字段名称必须大写，视为导出字段，标签无用
+	type Ini struct { //字段名称必须大写，视为导出字段 标签gcfg
 		Section //不能定义命名字段，必须匿名，否则解析报错can't store data at section "section"   ( expected section header)
 	}
 
@@ -308,7 +308,7 @@ func TestED2Struct(t *testing.T) {
 			obj: &Result{},
 		},
 		{
-			ext: "xml", // Dst作为起始标签,即配置对应的顶级struct类型名称
+			ext: "xml",
 			str: `
                 <?xml version="1.0" encoding="UTF-8"?>
                 <Dst>
